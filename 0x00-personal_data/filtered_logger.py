@@ -5,9 +5,30 @@ Module that handles the filter_datum function
 import re
 import logging
 from typing import List, Tuple
+import os
+import mysql.connector
 
 
 PII_FIELDS: Tuple[str, ...] = ("name", "email", "phone", "ssn", "password")
+
+
+def get_db() -> mysql.connector.connection.MySQLConnection:
+    '''
+    Connects to a MySQL db using credentials from env variables
+    '''
+    username = os.getenv("PERSONAL_DATA_DB_USERNAME", "root")
+    password = os.getenv("PERSONAL_DATA_DB_PASSWORD", "")
+    host = os.getenv("PERSONAL_DATA_DB_HOST", "localhost")
+    db_name = os.getenv("PERSONAL_DATA_DB_NAME")
+
+    # make the connection to the database
+    connection = mysql.connector.connect(
+        user=username,
+        password=password,
+        host=host,
+        database=db_name
+    )
+    return connection
 
 
 def get_logger() -> logging.Logger:
