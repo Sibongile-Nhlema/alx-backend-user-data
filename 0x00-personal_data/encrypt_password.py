@@ -6,7 +6,7 @@ hashed password, which is a byte string.
 import bcrypt
 
 
-def is_valid(hashed_pwd: bytes, password: str) -> bool:
+def is_valid(hash_password: bytes, password: str) -> bool:
     """
     Args:
         hashed_pwd (bytes): hashed password to compare with
@@ -14,7 +14,7 @@ def is_valid(hashed_pwd: bytes, password: str) -> bool:
     Returns:
         bool: True matche, otherwise False.
     """
-    return bcrypt.checkpw(password.encode('utf-8'), hashed_pwd)
+    return bcrypt.checkpw(password.encode('utf-8'), hash_password)
 
 
 def hash_password(password: str) -> bytes:
@@ -25,5 +25,5 @@ def hash_password(password: str) -> bytes:
         bytes: hashed password as bytes.
     '''
     salt = bcrypt.gensalt()
-    hashed_pwd = bcrypt.hashpw(password.encode('utf-8'), salt)
-    return hashed_pwd
+    hash_password = bcrypt.hashpw(password.encode('utf-8'), salt)
+    return hash_password
