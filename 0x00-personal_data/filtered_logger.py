@@ -12,6 +12,26 @@ import mysql.connector
 PII_FIELDS: Tuple[str, ...] = ("name", "email", "phone", "ssn", "password")
 
 
+def main():
+    '''
+    Main function to retrieve and log user data from the db.
+    '''
+    logger = get_logger()
+    db = get_db()
+    cursor = db.cursor()
+
+    cursor.execute("SELECT * FROM users;")
+    rows = cursor.fetchall()
+
+    for row in rows:
+        log_message = "; ".join(f"{field}={value}" for field,
+                                value in zip(cursor.column_names, row))
+        logger.info(log_message)
+
+    cursor.close()
+    db.close()
+
+
 def get_db() -> mysql.connector.connection.MySQLConnection:
     '''
     Connects to a MySQL db using credentials from env variables
@@ -117,3 +137,7 @@ class RedactingFormatter(logging.Formatter):
         filtered_message = filter_datum(self.fields, self.REDACTION,
                                         original_message, self.SEPARATOR)
         return filtered_message
+
+
+if __name__ == "__main__":
+    main()
