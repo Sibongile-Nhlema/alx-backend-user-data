@@ -23,7 +23,7 @@ def not_found(error) -> str:
 
 # Task 1 - Error handler: Unauthorized
 @app.errorhandler(401)
-def not_found(error) -> str:
+def not_found(error: Exception) -> tuple:
     """ Not Authorised request
     """
     return jsonify({"error": "Unauthorized"}), 401
