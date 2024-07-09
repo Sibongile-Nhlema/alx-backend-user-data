@@ -34,3 +34,13 @@ def unauthorized() -> tuple:
       - the number of each objects
     """
     abort(401)
+
+
+# Task 2 - Error handler: Forbidden
+@app_views.route('/forbidden/', methods=['GET'], strict_slashes=False)
+def unauthorized() -> tuple:
+    """ GET /api/v1/forbidden
+    Return:
+      - the number of each objects
+    """
+    abort(403)
