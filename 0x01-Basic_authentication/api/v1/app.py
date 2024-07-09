@@ -33,7 +33,8 @@ def before_request_handler():
         return
 
     # Paths that do not require any authentication
-    excluded_paths = ['/api/v1/status/', '/api/v1/unauthorized/', '/api/v1/forbidden/']
+    excluded_paths = ['/api/v1/status/',
+                      '/api/v1/unauthorized/', '/api/v1/forbidden/']
 
     # Check if request path is excluded
     if request.path in excluded_paths:
