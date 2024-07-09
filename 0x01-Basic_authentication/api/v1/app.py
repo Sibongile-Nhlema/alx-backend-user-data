@@ -32,7 +32,7 @@ def not_found(error: Exception) -> tuple:
 # Task 2 - Error handler: Forbidden
 @app.errorhandler(403)
 def forbidden(error: Exception) -> tuple:
-    """ Forbidden request
+    """ Forbidden request for the 403 status code
     """
     return jsonify({"error": "Forbidden"}), 403
 
