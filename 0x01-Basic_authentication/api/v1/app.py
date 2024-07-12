@@ -29,6 +29,9 @@ if 'AUTH_TYPE' in os.environ:
 # Define before_request handler
 @app.before_request
 def before_request_handler():
+    '''
+    Handles requests before reaching the endpoint.
+    '''
     if auth is None:
         return
 
