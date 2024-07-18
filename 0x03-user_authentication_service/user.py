@@ -5,7 +5,9 @@ SQLAlchemy model, Users
 from sqlalchemy import Column, Integer, String, create_engine
 from sqlalchemy.ext.declarative import declarative_base
 
+
 Base = declarative_base()
+
 
 class User(Base):
     '''
@@ -20,7 +22,7 @@ class User(Base):
 
     '''
     __tablename__ = 'users'
-    
+
     id = Column(Integer, primary_key=True, nullable=False)
     email = Column(String(250), nullable=False)
     hashed_password = Column(String(250), nullable=False)
