@@ -1,4 +1,5 @@
-"""DB module
+#!/usr/bin/env python3
+"""Mdule for the DB 
 """
 from sqlalchemy import create_engine
 from sqlalchemy.ext.declarative import declarative_base
@@ -35,5 +36,4 @@ class DB:
         user = User(email=email, hashed_password=hashed_password)
         self._session.add(user)
         self._session.commit()
-        self._session.refresh(user)
         return user
